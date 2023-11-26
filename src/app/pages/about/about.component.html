@@ -1,0 +1,6 @@
+<div class="container mx-auto my-10 h-screen">
+    <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600 text-center"  *ngIf="content">
+    {{content.title}}
+    </h3>
+    <div class="mt-5 line-clamp-3 text-sm leading-6 text-gray-600" [innerHtml]="content.contents | safeHtml" *ngIf="content"></div>
+</div>
