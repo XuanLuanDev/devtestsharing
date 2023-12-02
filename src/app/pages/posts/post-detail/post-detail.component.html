@@ -26,11 +26,11 @@
         <div class="p-4 border-t border-b md:border md:rounded">
           <div class="flex py-2">
             <div>
-              <p class="font-semibold text-gray-700 text-sm"> {{post.author}} </p>
-              <p class="font-semibold text-gray-600 text-xs"> {{post.job}} </p>
+              <p class="font-semibold text-gray-700 text-sm"> {{author?.name}} </p>
+              <p class="font-semibold text-gray-600 text-xs"> {{author?.job}} </p>
             </div>
           </div>
-          <p class="text-gray-700 py-3" [innerHtml]="post.author_description | safeHtml">
+          <p class="text-gray-700 py-3" [innerHtml]="author?.description | safeHtml">
           </p>
          
         </div>

@@ -28,10 +28,10 @@
               <p class="font-semibold text-gray-900">
                 <a href="#">
                   <span class="absolute inset-0"></span>
-                  {{ p.author}}
+                  {{ getAuthor(p.author)?.name}}
                 </a>
               </p>
-              <p class="text-gray-600">{{ p.job}}</p>
+              <p class="text-gray-600"> {{ getAuthor(p.author)?.job}}</p>
             </div>
           </div>
         </article>

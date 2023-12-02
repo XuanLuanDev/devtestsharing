@@ -22,6 +22,8 @@ import { map } from 'rxjs';
 import { UnicodeFormatPipe } from './core/pipes/unicode-format.pipe';
 import { ProductsComponent } from './pages/products/products.component';
 import { LoadingComponent } from './shared/loading/loading.component';
+import { Author, AuthorService } from './core/services/author.service';
+import { CacheInterceptor } from './core/interceptors/cache.intercepter';
 function initialize(http: HttpClient, config: ConfigService): (() => Promise<boolean>) {
   return (): Promise<boolean> => {
     return new Promise<boolean>((resolve: (a: boolean) => void): void => {
@@ -29,6 +31,27 @@ function initialize(http: HttpClient, config: ConfigService): (() => Promise<boo
          .pipe(
            map((x: any) => {
              config.apiUrl = x.apiUrl;
+             resolve(true);
+           })
+         ).subscribe();
+    });
+  };
+}
+function getAuthor(http: HttpClient, config: AuthorService): (() => Promise<boolean>) {
+  return (): Promise<boolean> => {
+    return new Promise<boolean>((resolve: (a: boolean) => void): void => {
+       http.get('./assets/author.json')
+         .pipe(
+           map((x: any) => {
+             config.authors =[];
+             for(let i=0;i<x.length;i++){
+              config.authors.push({
+                id:x[i].id,
+                name:x[i].name,
+                job:x[i].job,
+                description:x[i].description
+              });
+             }
              resolve(true);
            })
          ).subscribe();
@@ -71,10 +94,20 @@ function initialize(http: HttpClient, config: ConfigService): (() => Promise<boo
     multi: true
   },
   {
+    provide: APP_INITIALIZER,
+    useFactory: getAuthor,
+    deps: [
+        HttpClient,
+        AuthorService
+      ],
+    multi: true
+  },
+  {
     provide: HTTP_INTERCEPTORS,
     useClass: LoaderInterceptor,
     multi: true
   },
+  { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
