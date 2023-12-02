@@ -1,21 +1,24 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
-import { PostListComponent } from './pages/posts/post-list/post-list.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ProductsComponent } from './pages/products/products.component';
-import { PostDetailComponent } from './pages/posts/post-detail/post-detail.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
-  {path:'bai-viet',component:PostListComponent},
-  {path:'bai-viet/:slug',component:PostDetailComponent},
+  { path: 'bai-viet', loadChildren: () => import('./modules/posts/post.module').then(m => m.PostModule)},
   {path:'gioi-thieu',component:AboutComponent},
-  {path:'san-pham-da-lam',component:ProductsComponent}
+  {path:'san-pham-da-lam',component:ProductsComponent},
+  { path: '**', component: NotFoundComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes, {
+      preloadingStrategy: PreloadAllModules,
+    }),
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

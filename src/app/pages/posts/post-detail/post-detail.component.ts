@@ -20,9 +20,11 @@ export class PostDetailComponent implements OnInit {
   }
   ngOnInit(): void {
     this.service.getPost(this.slug).subscribe(t=>{
-      if(t.body.datas && t.body.datas.length >0)
-      this.post =t.body.datas[0]
-      this.author= this.getAuthor(this.post.author);
+      if(t.body.datas && t.body.datas.length >0){
+        this.post =t.body.datas[0]
+        this.author= this.getAuthor(this.post.author);
+      }
+
     })
   }
   getAuthor(id:any){
