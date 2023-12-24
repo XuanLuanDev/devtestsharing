@@ -20,74 +20,26 @@
     position: relative;
   }
   
-  #h3 {
-    color: rgb(82, 79, 79);
+  .loader {
+    height: 30px;
+    aspect-ratio: 2;
+    display: grid;
+    background:
+      radial-gradient(farthest-side,#000 15%,#0000 18%)0 0/50% 100%,
+      radial-gradient(50% 100% at 50% 160%,#00ff00 95%,#0000) 0 0   /50% 50%,
+      radial-gradient(50% 100% at 50% -60%,#00ff00 95%,#0000) 0 100%/50% 50%;
+    background-repeat: repeat-x;
+    animation: l2 1.5s infinite linear;
   }
-  
-  #ring {
-    width: 190px;
-    height: 190px;
-    border: 1px solid transparent;
-    border-radius: 50%;
-    position: absolute;
-  }
-  
-  #ring:nth-child(1) {
-    border-bottom: 8px solid rgb(240, 42, 230);
-    animation: rotate1 2s linear infinite;
-  }
-  
-  @keyframes rotate1 {
-    from {
-      transform: rotateX(50deg) rotateZ(110deg);
-    }
-  
-    to {
-      transform: rotateX(50deg) rotateZ(470deg);
-    }
-  }
-  
-  #ring:nth-child(2) {
-    border-bottom: 8px solid rgb(240, 19, 67);
-    animation: rotate2 2s linear infinite;
-  }
-  
-  @keyframes rotate2 {
-    from {
-      transform: rotateX(20deg) rotateY(50deg) rotateZ(20deg);
-    }
-  
-    to {
-      transform: rotateX(20deg) rotateY(50deg) rotateZ(380deg);
-    }
-  }
-  
-  #ring:nth-child(3) {
-    border-bottom: 8px solid rgb(3, 170, 170);
-    animation: rotate3 2s linear infinite;
-  }
-  
-  @keyframes rotate3 {
-    from {
-      transform: rotateX(40deg) rotateY(130deg) rotateZ(450deg);
-    }
-  
-    to {
-      transform: rotateX(40deg) rotateY(130deg) rotateZ(90deg);
-    }
-  }
-  
-  #ring:nth-child(4) {
-    border-bottom: 8px solid rgb(207, 135, 1);
-    animation: rotate4 2s linear infinite;
-  }
-  
-  @keyframes rotate4 {
-    from {
-      transform: rotateX(70deg) rotateZ(270deg);
-    }
-  
-    to {
-      transform: rotateX(70deg) rotateZ(630deg);
-    }
+  @keyframes l2 {
+    0%,
+    15% {background-position:0   0,0 0,0 100%}
+    20%,
+    40% {background-position:5px 0,0 0,0 100%}
+    45%,
+    55% {background-position:0   0,0 0,0 100%}
+    60%,
+    80%{background-position:-5px 0,0 0,0 100%}
+    85%,
+    100% {background-position:0   0,0 0,0 100%}
   }
