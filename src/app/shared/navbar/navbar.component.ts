@@ -19,7 +19,11 @@ export class NavbarComponent {
         }
         else if(this.router.url.indexOf("/bai-viet")>=0){
           this.mode =3;
-        }else{
+        }
+        else if(this.router.url.indexOf("/luu-tru")>=0){
+          this.mode =4;
+        }
+        else{
           this.mode =1;
         }
       }

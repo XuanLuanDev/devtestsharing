@@ -10,12 +10,23 @@ import { PostService } from 'src/app/core/services/post.service';
 })
 export class HomeComponent {
 posts:any[] =[];
+totalRecord:any =0;
+recordsPerPage:any =6;
+page:any =1;
 authors:any[]=[];
+all_posts:any[]=[];
+totalPage:any =0;
 constructor(private service:PostService,auths:AuthorService,private titleService: Title, private metaService: Meta){
   this.authors =auths.authors;
   this.setSEOData("Chia sẻ kiến thức kinh nghiệm trong ngành IT - DevTestSharing.com","Chia sẻ kiến thức kinh nghiệm lập trình, kiểm thử, database, thi chứng chỉ IT");
   service.getAllPost().subscribe(t=>{
-   this.posts =t.body.datas
+   this.all_posts =t.body.datas;
+   this.totalRecord =t.body.count;
+   let endIndex =6;
+  if(endIndex> this.totalRecord){
+    endIndex = this.totalRecord;
+  }
+  this.posts =this.all_posts.slice(0 ,endIndex)
   })
 }
 getAuthor(id:any){

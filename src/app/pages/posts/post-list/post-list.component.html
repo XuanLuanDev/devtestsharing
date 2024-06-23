@@ -36,6 +36,13 @@
           </div>
         </article>
       </div>
-      <app-pagination [totalRecords]="totalRecord" [recordsPerPage]="recordsPerPage" (onPageChange)="changePage($event)" *ngIf="totalRecord>0"></app-pagination>
+      <!-- <app-pagination [totalRecords]="totalRecord" [recordsPerPage]="recordsPerPage" (onPageChange)="changePage($event)" ></app-pagination> -->
+      <div class="flex items-center justify-between   bg-white px-4 py-3 sm:px-6" >
+        <div class="flex flex-1 justify-between">
+          <a (click)="changePage(page -1)"  [disabled]="page<=1" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</a>
+          <a (click)="changePage(page +1)" [disabled]="page>=totalPage"  class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
+        </div>
+        
+      </div>
     </div>
   </div>

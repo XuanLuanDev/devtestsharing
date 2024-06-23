@@ -21,6 +21,7 @@ import { CacheInterceptor } from './core/interceptors/cache.intercepter';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { PostModule } from './modules/posts/post.module';
 import { ShareModule } from './modules/share.module';
+import { ArchiveComponent } from './pages/archive/archive.component';
 function initialize(http: HttpClient, config: ConfigService): (() => Promise<boolean>) {
   return (): Promise<boolean> => {
     return new Promise<boolean>((resolve: (a: boolean) => void): void => {
@@ -70,7 +71,8 @@ function getAuthor(http: HttpClient, config: AuthorService): (() => Promise<bool
    // UnicodeFormatPipe,
     ProductsComponent,
     LoadingComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ArchiveComponent
   ],
   imports: [
     BrowserModule,
